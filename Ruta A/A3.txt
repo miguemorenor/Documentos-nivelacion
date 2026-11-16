@@ -1,0 +1,164 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+PS C:\Users\User> cd C:\Users\User\curso-sig-Miguel
+PS C:\Users\User\curso-sig-Miguel> python -m venv venv
+PS C:\Users\User\curso-sig-Miguel> .\venv\Scripts\Activate.ps1
+.\venv\Scripts\Activate.ps1 : No se puede cargar el archivo C:\Users\User\curso-sig-Miguel\venv\Scripts\Activate.ps1 porque la ejecución de scripts está deshabilitada en este sistema. Para obtener más
+información, consulta el tema about_Execution_Policies en https:/go.microsoft.com/fwlink/?LinkID=135170.
+En línea: 1 Carácter: 1
++ .\venv\Scripts\Activate.ps1
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : SecurityError: (:) [], PSSecurityException
+    + FullyQualifiedErrorId : UnauthorizedAccess
+PS C:\Users\User\curso-sig-Miguel> Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+PS C:\Users\User\curso-sig-Miguel> .\venv\Scripts\Activate.ps1
+(venv) PS C:\Users\User\curso-sig-Miguel> (venv) PS C:\Users\User\curso-sig-Miguel>
+En línea: 1 Carácter: 8
++ (venv) PS C:\Users\User\curso-sig-Miguel>
++        ~~
+Token 'PS' inesperado en la expresión o la instrucción.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : UnexpectedToken
+
+(venv) PS C:\Users\User\curso-sig-Miguel> python -m pip install pandas
+Collecting pandas
+  Downloading pandas-3.1.0-cp313-cp313-win_amd64.whl.metadata (18 kB)
+Collecting numpy>=2.0.2 (from pandas)
+  Downloading numpy-2.5.4-cp313-cp313-win_amd64.whl.metadata (6.6 kB)
+Collecting python-dateutil>=2.9.0 (from pandas)
+  Downloading python_dateutil-3.0.0-py2.py3-none-any.whl.metadata (8.2 kB)
+Collecting tzdata (from pandas)
+  Downloading tzdata-2026.6-py2.py3-none-any.whl.metadata (1.4 kB)
+Collecting six>=1.6 (from python-dateutil>=2.9.0->pandas)
+  Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+Downloading pandas-3.1.0-cp313-cp313-win_amd64.whl (10.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.7/10.7 MB 1.0 MB/s  0:00:10
+Downloading numpy-2.5.4-cp313-cp313-win_amd64.whl (12.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.6/12.6 MB 2.2 MB/s  0:00:05
+Downloading python_dateutil-3.0.0-py2.py3-none-any.whl (94 kB)
+Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+Downloading tzdata-2026.6-py2.py3-none-any.whl (348 kB)
+Installing collected packages: tzdata, six, numpy, python-dateutil, pandas
+Successfully installed numpy-2.5.4 pandas-3.1.0 python-dateutil-3.0.0 six-1.17.0 tzdata-2026.6
+
+[notice] A new release of pip is available: 25.2 -> 26.2.2
+[notice] To update, run: python.exe -m pip install --upgrade pip
+(venv) PS C:\Users\User\curso-sig-Miguel> Test-Path .\datos\provincias_boyaca.geojson
+False
+(venv) PS C:\Users\User\curso-sig-Miguel> New-Item -ItemType Directory -Path "C:\Users\User\curso-sig-Miguel\datos" -Force
+
+
+    Directorio: C:\Users\User\curso-sig-Miguel
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----     31/10/2026  11:41 a. m.                datos
+
+
+(venv) PS C:\Users\User\curso-sig-Miguel> Copy-Item -Path "C:\Users\User\curso-sig\datos\provincias_boyaca.geojson" -Destination "C:\Users\User\curso-sig-Miguel\datos\provincias_boyaca.geojson"
+(venv) PS C:\Users\User\curso-sig-Miguel> Test-Path "C:\Users\User\curso-sig-Miguel\datos\provincias_boyaca.geojson"
+True
+(venv) PS C:\Users\User\curso-sig-Miguel> python
+Python 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> nombre = "Tunja"
+... poblacion = 172000
+... area = 121.5
+...
+... print(nombre)
+... print(poblacion)
+... print(area)
+...
+Tunja
+172000
+121.5
+>>> municipios = ["Tunja", "Duitama", "Sogamoso"]
+... municipio = {"nombre": "Tunja", "codigo": "15001", "area": 121.5}
+... print(municipios)
+... print(municipio)
+...
+['Tunja', 'Duitama', 'Sogamoso']
+{'nombre': 'Tunja', 'codigo': '15001', 'area': 121.5}
+>>> for m in municipios:
+...     if m.startswith("S"):
+...         print(m, "empieza por S")
+...
+Sogamoso empieza por S
+>>> def area_en_hectareas(km2):
+...     return km2 * 100
+...
+>>> print(area_en_hectareas(area))
+12150.0
+>>> import json
+>>> with open("datos/provincias_boyaca.geojson", encoding="utf-8") as f:
+...     datos = json.load(f)
+...
+>>> print("Número de features:", len(datos["features"]))
+... primero = datos["features"][0]["properties"]
+... print(primero)
+...
+Número de features: 123
+{'FID': 1, 'NOMBRE_ENT': 'CHIVOR', 'DEPARTAMEN': 'BOYACÁ', 'CODIGO': '15236', 'cod_mun_nu': 15236, 'cod_mun': 15236, 'corporacio': 'CORPOCHIVOR', 'vigencia': '2025', 'etapa': 'TERMINÓ TERCERA VIGENCIA 2015', 'provincia': 'Oriente', 'tdt': 'NO', 'cali_agua': 'ALTO', 'Shape__Area': 110178910.65893555, 'Shape__Length': 63217.14320278576, 'Tipo': 'EOT', 'Estado': 'Vigente', 'Enlace': 'https://www.chivor-boyaca.gov.co/planes/documentacion-eot--google-drive', 'GlobalID': 'f48688dc-6a03-48f0-9772-f2ab4b0cfeb3'}
+>>> from collections import Counter
+...
+... conteo = Counter(
+...     feat["properties"]["provincia"]
+...     for feat in datos["features"]
+... )
+...
+... for provincia, n in conteo.most_common():
+...     print(f"{provincia:25} {n}")
+...
+Centro                    15
+Occidente                 15
+Ricaurte                  13
+Sugamuxi                  13
+Márquez                   10
+Tundama                   9
+Norte                     9
+Oriente                   8
+Valderrama                7
+Neira                     6
+Lengupá                   6
+Gutiérrez                 6
+La Libertad               4
+Zona de Manejo Especial   1
+Distrito Fronterizo       1
+>>> print("Valores distintos en provincia:", len(conteo))
+... print("Total de registros:", sum(conteo.values()))
+...
+Valores distintos en provincia: 15
+Total de registros: 123
+>>> import pandas as pd
+>>> props = [f["properties"] for f in datos["features"]]
+... df = pd.DataFrame(props)
+...
+... print(df.groupby("provincia").size().sort_values(ascending=False))
+...
+provincia
+Centro                     15
+Occidente                  15
+Ricaurte                   13
+Sugamuxi                   13
+Márquez                    10
+Norte                       9
+Tundama                     9
+Oriente                     8
+Valderrama                  7
+Gutiérrez                   6
+Neira                       6
+Lengupá                     6
+La Libertad                 4
+Distrito Fronterizo         1
+Zona de Manejo Especial     1
+dtype: int64
+>>> print("Valores distintos en provincia:", df["provincia"].nunique())
+... print("Total de registros:", len(df))
+...
+Valores distintos en provincia: 15
+Total de registros: 123
+>>> exit()
+(venv) PS C:\Users\User\curso-sig-Miguel> deactivate
+PS C:\Users\User\curso-sig-Miguel>

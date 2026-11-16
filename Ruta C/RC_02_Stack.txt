@@ -1,0 +1,26 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+PS C:\Users\User> cd "C:\Users\User\curso-sig"
+PS C:\Users\User\curso-sig> docker compose config --services
+postgis
+geoserver
+pg_tileserv
+PS C:\Users\User\curso-sig> docker compose up -d
+[+] up 8/8
+ ✔ Image pramsey/pg_tileserv:latest  Pulled                                                                         4.0s
+ ✔ Container curso-sig-postgis-1     Running                                                                        0.0s
+ ✔ Container curso-sig-pg_tileserv-1 Started                                                                        0.4s
+ ✔ Container curso-sig-geoserver-1   Started                                                                        0.5s
+PS C:\Users\User\curso-sig> docker compose ps
+NAME                      IMAGE                               COMMAND                  SERVICE       CREATED         STATUS                            PORTS
+curso-sig-geoserver-1     docker.osgeo.org/geoserver:2.28.6   "bash /opt/startup.sh"   geoserver     5 days ago      Up2 seconds (health: starting)   127.0.0.1:8080->8080/tcp
+curso-sig-pg_tileserv-1   pramsey/pg_tileserv:latest          "/app/pg_tileserv"       pg_tileserv   3 seconds ago   Up2 seconds                      127.0.0.1:7800->7800/tcp
+curso-sig-postgis-1       postgis/postgis:16-3.4              "docker-entrypoint.s…"   postgis       5 days ago      Up27 minutes                     127.0.0.1:5433->5432/tcp
+PS C:\Users\User\curso-sig> docker compose exec postgis psql -U postgres -d geodatos -c "SELECT postgis_version();"
+            postgis_version
+---------------------------------------
+ 3.4 USE_GEOS=1 USE_PROJ=1 USE_STATS=1
+(1 row)
+
+PS C:\Users\User\curso-sig>

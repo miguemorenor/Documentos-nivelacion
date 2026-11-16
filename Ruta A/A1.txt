@@ -1,0 +1,159 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+PS C:\Users\User> cd C:\Users\User\curso-sig-Miguel
+PS C:\Users\User\curso-sig-Miguel> cd ~
+PS C:\Users\User> mkdir curso-sig\datos, curso-sig\scripts, curso-sig\salidas
+mkdir : Ya existe un elemento con el nombre especificado: C:\Users\User\curso-sig\datos.
+En línea: 1 Carácter: 1
++ mkdir curso-sig\datos, curso-sig\scripts, curso-sig\salidas
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceExists: (C:\Users\User\curso-sig\datos:String) [New-Item], IOException
+    + FullyQualifiedErrorId : DirectoryExist,Microsoft.PowerShell.Commands.NewItemCommand
+
+mkdir : Ya existe un elemento con el nombre especificado: C:\Users\User\curso-sig\scripts.
+En línea: 1 Carácter: 1
++ mkdir curso-sig\datos, curso-sig\scripts, curso-sig\salidas
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceExists: (C:\Users\User\curso-sig\scripts:String) [New-Item], IOException
+    + FullyQualifiedErrorId : DirectoryExist,Microsoft.PowerShell.Commands.NewItemCommand
+
+mkdir : Ya existe un elemento con el nombre especificado: C:\Users\User\curso-sig\salidas.
+En línea: 1 Carácter: 1
++ mkdir curso-sig\datos, curso-sig\scripts, curso-sig\salidas
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceExists: (C:\Users\User\curso-sig\salidas:String) [New-Item], IOException
+    + FullyQualifiedErrorId : DirectoryExist,Microsoft.PowerShell.Commands.NewItemCommand
+
+PS C:\Users\User> cd curso-sig
+PS C:\Users\User\curso-sig> Get-ChildItem
+
+
+    Directorio: C:\Users\User\curso-sig
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----     24/10/2026  12:56 p. m.                curso-sig-Miguel
+d-----     24/10/2026  11:14 a. m.                datos
+d-----     24/10/2026  11:09 a. m.                salidas
+d-----     24/10/2026  11:14 a. m.                scripts
+d-----     24/10/2026  11:44 a. m.                servicios_sig_y_websites
+
+
+PS C:\Users\User\curso-sig> cp C:\Users\User\curso-sig-Miguel\*.geojson ~\curso-sig\datos\
+PS C:\Users\User\curso-sig> Get-ChildItem datos
+
+
+    Directorio: C:\Users\User\curso-sig\datos
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     24/10/2026  11:14 a. m.       11754002 municipios_boyaca.geojson
+
+
+PS C:\Users\User\curso-sig> mv .\datos\municipios_boyaca.geojson .\datos\municipios.geojson
+PS C:\Users\User\curso-sig> Get-ChildItem -Force
+
+
+    Directorio: C:\Users\User\curso-sig
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d--h--     24/10/2026  12:17 p. m.                .git
+d-----     24/10/2026  12:56 p. m.                curso-sig-Miguel
+d-----     31/10/2026  10:33 a. m.                datos
+d-----     24/10/2026  11:09 a. m.                salidas
+d-----     24/10/2026  11:14 a. m.                scripts
+d-----     24/10/2026  11:44 a. m.                servicios_sig_y_websites
+
+
+PS C:\Users\User\curso-sig> git clone https://github.com/epiragauta/servicios_sig_y_websites.git
+fatal: destination path 'servicios_sig_y_websites' already exists and is not an empty directory.
+PS C:\Users\User\curso-sig> cd servicios_sig_y_websites
+PS C:\Users\User\curso-sig\servicios_sig_y_websites> dir
+
+
+    Directorio: C:\Users\User\curso-sig\servicios_sig_y_websites
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----     24/10/2026  11:44 a. m.                data
+d-----     24/10/2026  11:44 a. m.                docs
+d-----     24/10/2026  11:44 a. m.                nivelacion
+d-----     24/10/2026  11:44 a. m.                scripts
+d-----     24/10/2026  11:44 a. m.                taller
+d-----     24/10/2026  11:44 a. m.                webapp
+-a----     24/10/2026  11:44 a. m.            349 .gitignore
+-a----     24/10/2026  11:44 a. m.           1702 docker-compose.yml
+-a----     24/10/2026  11:44 a. m.           5399 README.md
+
+
+PS C:\Users\User\curso-sig\servicios_sig_y_websites> python scripts/descargar_boyaca.py --out nivelacion/datos
+Destino: nivelacion\datos
+
+[municipios_boyaca]
+  · offset 0: 123 features
+  ✓ 123 features → municipios_boyaca.geojson
+
+[veredas_boyaca]
+  · offset 0: 1713 features
+  ✓ 1713 features → veredas_boyaca.geojson
+
+[hospitales_boyaca]
+  · offset 0: 464 features
+  ✓ 464 features → hospitales_boyaca.geojson
+
+[red_vial_departamental]
+  · offset 0: 614 features
+  ✓ 614 features → red_vial_departamental.geojson
+
+[provincias_boyaca]
+  · offset 0: 123 features
+  ✓ 123 features → provincias_boyaca.geojson
+
+Listo. 5/5 descargas correctas.
+PS C:\Users\User\curso-sig\servicios_sig_y_websites> Get-ChildItem nivelacion/datos -Filter *.geojson
+
+
+    Directorio: C:\Users\User\curso-sig\servicios_sig_y_websites\nivelacion\datos
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     31/10/2026  10:40 a. m.         122119 hospitales_boyaca.geojson
+-a----     31/10/2026  10:39 a. m.       11754002 municipios_boyaca.geojson
+-a----     31/10/2026  10:41 a. m.        8297061 provincias_boyaca.geojson
+-a----     31/10/2026  10:40 a. m.       18894539 red_vial_departamental.geojson
+-a----     31/10/2026  10:40 a. m.       34831089 veredas_boyaca.geojson
+
+
+PS C:\Users\User\curso-sig\servicios_sig_y_websites> Copy-Item .\nivelacion\datos\*.geojson ..\datos\
+PS C:\Users\User\curso-sig\servicios_sig_y_websites> Get-ChildItem ..\datos\
+
+
+    Directorio: C:\Users\User\curso-sig\datos
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     31/10/2026  10:40 a. m.         122119 hospitales_boyaca.geojson
+-a----     24/10/2026  11:14 a. m.       11754002 municipios.geojson
+-a----     31/10/2026  10:39 a. m.       11754002 municipios_boyaca.geojson
+-a----     31/10/2026  10:41 a. m.        8297061 provincias_boyaca.geojson
+-a----     31/10/2026  10:40 a. m.       18894539 red_vial_departamental.geojson
+-a----     31/10/2026  10:40 a. m.       34831089 veredas_boyaca.geojson
+
+
+PS C:\Users\User\curso-sig\servicios_sig_y_websites> mv ..\datos\municipios_boyaca.geojson ..\datos\municipios.geojson
+mv : No se puede crear un archivo que ya existe.
+En línea: 1 Carácter: 1
++ mv ..\datos\municipios_boyaca.geojson ..\datos\municipios.geojson
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (C:\Users\User\c..._boyaca.geojson:FileInfo) [Move-Item], IOException
+    + FullyQualifiedErrorId : MoveFileInfoItemIOError,Microsoft.PowerShell.Commands.MoveItemCommand
+
+PS C:\Users\User\curso-sig\servicios_sig_y_websites>

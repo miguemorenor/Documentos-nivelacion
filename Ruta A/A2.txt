@@ -1,0 +1,175 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+PS C:\Users\User> cd C:\Users\Usuario\curso-sig
+cd : No se encuentra la ruta de acceso 'C:\Users\Usuario\curso-sig' porque no existe.
+En línea: 1 Carácter: 1
++ cd C:\Users\Usuario\curso-sig
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\Users\Usuario\curso-sig:String) [Set-Location], ItemNotFoundException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.SetLocationCommand
+
+PS C:\Users\User> git clone https://github.com/miguemorenor/curso-sig-Miguel
+fatal: destination path 'curso-sig-Miguel' already exists and is not an empty directory.
+PS C:\Users\User> cd curso-sig-miguel moreno
+Set-Location : No se encuentra ningún parámetro de posición que acepte el argumento 'moreno'.
+En línea: 1 Carácter: 1
++ cd curso-sig-miguel moreno
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Set-Location], ParameterBindingException
+    + FullyQualifiedErrorId : PositionalParameterNotFound,Microsoft.PowerShell.Commands.SetLocationCommand
+
+PS C:\Users\User> cd curso-sig-miguel moreno
+Set-Location : No se encuentra ningún parámetro de posición que acepte el argumento 'moreno'.
+En línea: 1 Carácter: 1
++ cd curso-sig-miguel moreno
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Set-Location], ParameterBindingException
+    + FullyQualifiedErrorId : PositionalParameterNotFound,Microsoft.PowerShell.Commands.SetLocationCommand
+
+PS C:\Users\User> cd curso-sig-Miguel
+PS C:\Users\User\curso-sig-Miguel> dir -Force
+
+
+    Directorio: C:\Users\User\curso-sig-Miguel
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d--h--      24/10/2026  1:11 p. m.                .git
+-a----     24/10/2026  11:14 a. m.       11754002 municipios_boyaca.geojson
+-a----     24/10/2026  12:59 p. m.             29 README.md
+
+
+PS C:\Users\User\curso-sig-Miguel> notepad README.md
+PS C:\Users\User\curso-sig-Miguel> notepad .gitignore
+PS C:\Users\User\curso-sig-Miguel> Copy-Item ..\datos\hospitales_boyaca.geojson .\
+Copy-Item : No se encuentra la ruta de acceso 'C:\Users\User\datos\hospitales_boyaca.geojson' porque no existe.
+En línea: 1 Carácter: 1
++ Copy-Item ..\datos\hospitales_boyaca.geojson .\
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\Users\User\d..._boyaca.geojson:String) [Copy-Item], ItemNotFoundException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.CopyItemCommand
+
+PS C:\Users\User\curso-sig-Miguel> dir -Force
+
+
+    Directorio: C:\Users\User\curso-sig-Miguel
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d--h--      24/10/2026  1:11 p. m.                .git
+-a----     31/10/2026  10:48 a. m.              0 .gitignore
+-a----     24/10/2026  11:14 a. m.       11754002 municipios_boyaca.geojson
+-a----     31/10/2026  10:47 a. m.             64 README.md
+
+
+PS C:\Users\User\curso-sig-Miguel> git config --global user.name "Miguel Moreno"
+error: could not lock config file C:/VULCAN_HOME/.gitconfig: No such file or directory
+PS C:\Users\User\curso-sig-Miguel> git config --global user.email "miguelmorenoingeo@gmail.com"
+error: could not lock config file C:/VULCAN_HOME/.gitconfig: No such file or directory
+PS C:\Users\User\curso-sig-Miguel> git config --global --list
+fatal: unable to read config file 'C:/VULCAN_HOME/.gitconfig': No such file or directory
+PS C:\Users\User\curso-sig-Miguel> git add .
+PS C:\Users\User\curso-sig-Miguel> git commit -m "Primer commit: README, gitignore y datos de hospitales"
+Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'User@DESKTOP-FUFELP4.(none)')
+PS C:\Users\User\curso-sig-Miguel> git push -u origin main
+branch 'main' set up to track 'origin/main'.
+Everything up-to-date
+PS C:\Users\User\curso-sig-Miguel> git checkout -b ajuste-readme
+Switched to a new branch 'ajuste-readme'
+PS C:\Users\User\curso-sig-Miguel> git commit -am "Mejora el README"
+Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'User@DESKTOP-FUFELP4.(none)')
+PS C:\Users\User\curso-sig-Miguel> git push -u origin ajuste-readme
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+remote:
+remote: Create a pull request for 'ajuste-readme' on GitHub by visiting:
+remote:      https://github.com/miguemorenor/curso-sig-Miguel/pull/new/ajuste-readme
+remote:
+To https://github.com/miguemorenor/curso-sig-Miguel.git
+ * [new branch]      ajuste-readme -> ajuste-readme
+branch 'ajuste-readme' set up to track 'origin/ajuste-readme'.
+PS C:\Users\User\curso-sig-Miguel> git checkout main
+A       .gitignore
+M       README.md
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+PS C:\Users\User\curso-sig-Miguel> git merge ajuste-readme
+Already up to date.
+PS C:\Users\User\curso-sig-Miguel> git push
+Everything up-to-date
+PS C:\Users\User\curso-sig-Miguel> git config user.name "Miguel Moreno"
+PS C:\Users\User\curso-sig-Miguel> git config user.email "miguelmorenoingeo@gmail.com"
+PS C:\Users\User\curso-sig-Miguel> git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   .gitignore
+        modified:   README.md
+
+PS C:\Users\User\curso-sig-Miguel> git checkout ajuste-readme
+A       .gitignore
+M       README.md
+Switched to branch 'ajuste-readme'
+Your branch is up to date with 'origin/ajuste-readme'.
+PS C:\Users\User\curso-sig-Miguel> git commit -m "Agrega gitignore y mejora el README"
+[ajuste-readme ec6a650] Agrega gitignore y mejora el README
+ 2 files changed, 7 insertions(+)
+ create mode 100644 .gitignore
+PS C:\Users\User\curso-sig-Miguel> git push -u origin ajuste-readme
+Enumerating objects: 6, done.
+Counting objects: 100% (6/6), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (4/4), 415 bytes | 415.00 KiB/s, done.
+Total 4 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/miguemorenor/curso-sig-Miguel.git
+   caf25de..ec6a650  ajuste-readme -> ajuste-readme
+branch 'ajuste-readme' set up to track 'origin/ajuste-readme'.
+PS C:\Users\User\curso-sig-Miguel> git checkout main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+PS C:\Users\User\curso-sig-Miguel> git merge ajuste-readme
+Updating caf25de..ec6a650
+Fast-forward
+ .gitignore | 0
+ README.md  | 7 +++++++
+ 2 files changed, 7 insertions(+)
+ create mode 100644 .gitignore
+PS C:\Users\User\curso-sig-Miguel> git push origin main
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/miguemorenor/curso-sig-Miguel.git
+   caf25de..ec6a650  main -> main
+PS C:\Users\User\curso-sig-Miguel> git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+PS C:\Users\User\curso-sig-Miguel>

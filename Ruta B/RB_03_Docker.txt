@@ -1,0 +1,19 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+PS C:\Users\User> cd "C:\Users\User\curso-sig"
+PS C:\Users\User\curso-sig> docker compose up -d postgis
+failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.
+PS C:\Users\User\curso-sig> docker compose ps
+failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.
+PS C:\Users\User\curso-sig> docker compose exec postgis psql -U postgres -d geodatos -c "SELECT postgis_version();"
+failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.
+PS C:\Users\User\curso-sig> docker compose up -d postgis
+[+] up 1/1
+ ✔ Container curso-sig-postgis-1 Started                                                                            0.3s
+PS C:\Users\User\curso-sig> docker compose ps
+NAME                  IMAGE                    COMMAND                  SERVICE   CREATED      STATUS         PORTS
+curso-sig-postgis-1   postgis/postgis:16-3.4   "docker-entrypoint.s…"   postgis   5 days ago   Up 4 seconds   127.0.0.1:5433->5432/tcp
+PS C:\Users\User\curso-sig> docker compose exec postgis pg_isready -U postgres -d geodatos
+/var/run/postgresql:5432 - accepting connections
+PS C:\Users\User\curso-sig>

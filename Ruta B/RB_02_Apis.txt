@@ -1,0 +1,20 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+PS C:\Users\User> cd "C:\Users\User\curso-sig"
+PS C:\Users\User\curso-sig> Copy-Item "C:\Users\User\OneDrive - Empresa\Documentos\ChatGPT\WEB SIG\b2_paginacion.py" .
+PS C:\Users\User\curso-sig> .\venv\Scripts\python.exe -X utf8 .\b2_paginacion.py 1000
+Vuelta 1 | offset 0: +1000
+Vuelta 2 | offset 1000: +713
+TOTAL: 1713 veredas
+Municipios distintos (NOMB_MPIO): 124
+Vueltas con bloque de 1000: 2
+PS C:\Users\User\curso-sig> .\venv\Scripts\python.exe -X utf8 .\b2_paginacion.py 500
+Vuelta 1 | offset 0: +500
+Vuelta 2 | offset 500: +500
+Vuelta 3 | offset 1000: +500
+Vuelta 4 | offset 1500: +213
+TOTAL: 1713 veredas
+Municipios distintos (NOMB_MPIO): 124
+Vueltas con bloque de 500: 4
+PS C:\Users\User\curso-sig>
